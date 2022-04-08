@@ -1,0 +1,7 @@
+{
+    "id" : "1",
+    "type": "VACA",
+    "edad": 2,
+    "father": "2",
+    "mother": "3"
+}
