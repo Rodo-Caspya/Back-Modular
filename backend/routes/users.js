@@ -26,6 +26,9 @@ router.post('/signup', (req, res) => {
         if(req.body.email){
             user.email = req.body.email;
         }
+        if(req.body.admin){
+          user.admin = req.body.admin;
+        }
         user.save((err,user) => {
             if(err){
                 res.statusCode = 200;
