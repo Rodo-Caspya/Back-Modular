@@ -11,6 +11,7 @@ router.use(bodyParser.json());
 
 router.post('/signup', (req, res) => {
   User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+    
     if(err) {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
@@ -18,7 +19,7 @@ router.post('/signup', (req, res) => {
     }
     else {
         if(req.body.firstname){
-          user.firsname = req.body.firsname;
+          user.firstname = req.body.firstname;
         }
         if(req.body.lastname){
           user.lastname = req.body.lastname;
@@ -30,6 +31,7 @@ router.post('/signup', (req, res) => {
           user.admin = req.body.admin;
         }
         user.save((err,user) => {
+          
             if(err){
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -75,6 +77,7 @@ router.get('/consultar', async function consultar (req, res) {
       const user = await User.find();
       res.statusCode = 200;
       res.json(user);
+      
   }catch{
       res.statusCode = 200;
       // res.status(200).send({Error:"Vacas is not found"});
