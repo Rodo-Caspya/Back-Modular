@@ -84,4 +84,25 @@ router.get('/consultar', async function consultar (req, res) {
   }
 });
 
+router.put('/update/:id', async function update (req, res){
+  try{
+      const user = await User.findById(req.params.id);
+      Object.assign(user,req.body);
+      user.save();
+      res.status(200).json({success: true, status: 'Successful!'});
+  }catch{
+      res.status(200).send({Error: "User is not found"});
+  }
+  
+});
+
+router.delete('/delete/:id', async function deleteById (req, res){
+  try{
+      const user = await User.findById(req.params.id);
+      await user.remove();
+      res.status(200).json({success: true, status: 'Successful!'});
+  }catch{ 
+      res.status(200).send({Error: "Usuario is not found"});
+  }
+});
 module.exports = router;
