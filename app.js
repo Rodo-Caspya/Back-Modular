@@ -12,18 +12,16 @@ const nodemailer = require('nodemailer');
 //config file
 var config = require('./config');
 
+//mongoose
+const dbConnect = require('./db');
+
 //routes files
 const usersRouter = require('./routes/users');
 const vacasRouter = require('./routes/vacas');
 const helpRouter = require('./routes/help');
 
 //mongo conection
-const url = config.mongoUrl;
-const connect = mongoose.connect(url);
-
-connect.then((db) => {
-    console.log('Connected correctly to mongodb');
-}, (err) => { console.log(err); });
+dbConnect();
 
 //App inicialization
 var app = express();
