@@ -19,7 +19,7 @@ const dbConnect = require('./db');
 const usersRouter = require('./routes/users');
 const vacasRouter = require('./routes/vacas');
 const helpRouter = require('./routes/help');
-
+const vacunas = require('./routes/vacunas');
 //mongo conection
 dbConnect();
 
@@ -39,6 +39,7 @@ app.use(passport.initialize());
 app.use('/users', usersRouter);
 app.use('/vacas', vacasRouter);
 app.use('/help', helpRouter);
+app.use('/vacunas', vacunas);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
