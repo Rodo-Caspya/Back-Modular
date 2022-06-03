@@ -45,5 +45,6 @@ const vacaRegistro = new Schema({
     }]
 });
 
-module.exports = mongoose.model('vacaRegistro',vacaRegistro);
+module.exports.vacaRegistro = mongoose.model('vacaRegistro',vacaRegistro);
+module.exports.vacunaInfo = mongoose.model('vacunaInfo',vacunaInfo);
 

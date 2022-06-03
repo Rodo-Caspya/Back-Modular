@@ -12,18 +12,16 @@ const nodemailer = require('nodemailer');
 //config file
 var config = require('./config');
 
+//mongoose
+const dbConnect = require('./db');
+
 //routes files
 const usersRouter = require('./routes/users');
 const vacasRouter = require('./routes/vacas');
 const helpRouter = require('./routes/help');
-
+const vacunas = require('./routes/vacunas');
 //mongo conection
-const url = config.mongoUrl;
-const connect = mongoose.connect(url);
-
-connect.then((db) => {
-    console.log('Connected correctly to mongodb');
-}, (err) => { console.log(err); });
+dbConnect();
 
 //App inicialization
 var app = express();
@@ -41,6 +39,7 @@ app.use(passport.initialize());
 app.use('/users', usersRouter);
 app.use('/vacas', vacasRouter);
 app.use('/help', helpRouter);
+app.use('/vacunas', vacunas);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

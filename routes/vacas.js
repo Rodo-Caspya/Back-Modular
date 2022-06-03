@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser =require('body-parser');
-const vacaRegistro = require('../models/vacaRegistro');
+const {vacaRegistro, vacunaInfo} = require('../models/vacaRegistro');
 const passport = require('passport');
 const authenticate = require('../authenticate')
 
@@ -93,6 +93,39 @@ router.get('/totalVacas/posparto', async function preparto (req,res){
         const total = await vacaRegistro.find({"estado":{"$eq":"posparto"}});
         console.log(total);
         res.status(200).json(total);
+    }
+    catch{
+        res.status(200).json({Error:"Error"});
+    }
+});
+
+router.post('/addVacuna/:id', async function addVacuna (req,res){
+    try{
+        const vaca = await vacaRegistro.findById(req.params.id);
+        console.log(vaca);
+        vaca.registroVacunas.push({
+            name : req.body.name,
+            description: req.body.description,
+            registrationDate: req.body.registrationDate,
+            expirationDate: req.body.expirationDate
+        });
+
+        vaca.save();
+
+         
+        res.status(200).json({state:"ok"});
+    }
+    catch{
+        res.status(200).json({Error:"Error"});
+    }
+});
+
+router.get('/getVacunas/:id', async function getVacunas (req,res){
+    try{
+        const total = await vacaRegistro.findById(req.params.id);
+        console.log(total);
+        const ans = total.registroVacunas;
+        res.status(200).json(ans);
     }
     catch{
         res.status(200).json({Error:"Error"});
