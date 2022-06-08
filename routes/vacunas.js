@@ -41,7 +41,7 @@ router.put('/update/:id', async function update (req, res){
     
   });
 router.delete('/delete/:id', async function deleteById (req, res){
-    console.log("hi");
+    
     try{
         const vacuna = await vac.findById(req.params.id);
         await vacuna.remove();
