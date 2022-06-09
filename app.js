@@ -9,6 +9,13 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 
+const corsOptions = {
+    origin: [
+        'http://localhost:8080/',
+
+    ],
+    optionsSuccessStatus: 200
+}
 //config file
 var config = require('./config');
 
@@ -27,7 +34,7 @@ dbConnect();
 var app = express();
 
 //Module utilization
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
