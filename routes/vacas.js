@@ -7,15 +7,27 @@ const authenticate = require('../authenticate')
 var router = express.Router();
 router.use(bodyParser.json());
 
-router.post('/ingresar', (req,res) =>{
+router.post('/ingresar', async (req,res) =>{
     const registro = new vacaRegistro({
         _id: req.body.id,
         type: req.body.type,
         age: req.body.age,
         father: req.body.father,
-        mother: req.body.mother
+        mother: req.body.mother,
+        birthNumber: 0
     })
-    console.log("hasta aqui llego esta madre");
+
+    if (req.body.mother) {
+        const mother = await vacaRegistro.findById(req.body.mother);
+        if (mother) {
+            mother.birthNumber = mother.birthNumber + 1
+            mother.save()
+        }
+        else {
+            res.status(200).send("La vaca madre que usted ingresó no se encuentra registrada");
+            return;
+        }
+    }
 
     registro.save(function(err) {
         if(err){

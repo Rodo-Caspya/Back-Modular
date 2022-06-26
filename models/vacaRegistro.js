@@ -40,6 +40,10 @@ const vacaRegistro = new Schema({
         type: String,
         require: true
     },
+    birthNumber: {
+        type: Number,
+        require: true
+    },
     registroVacunas:[{
         type: vacunaInfo
     }]
