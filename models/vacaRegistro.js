@@ -38,7 +38,8 @@ const vacaRegistro = new Schema({
     },
     mother:{
         type: String,
-        require: true
+        require: true,
+        default: ""
     },
     birthNumber: {
         type: Number,
