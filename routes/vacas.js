@@ -92,7 +92,7 @@ router.get('/totalVacas', async function contar (req,res){
 router.get('/totalVacas/preparto', async function preparto (req,res){
     try{
         const total = await vacaRegistro.find({"estado":{"$eq":"preparto"}});
-        console.log(total);
+        
         res.status(200).json(total);
     }
     catch{
@@ -103,7 +103,7 @@ router.get('/totalVacas/preparto', async function preparto (req,res){
 router.get('/totalVacas/posparto', async function preparto (req,res){
     try{
         const total = await vacaRegistro.find({"estado":{"$eq":"posparto"}});
-        console.log(total);
+        
         res.status(200).json(total);
     }
     catch{
@@ -114,7 +114,7 @@ router.get('/totalVacas/posparto', async function preparto (req,res){
 router.post('/addVacuna/:id', async function addVacuna (req,res){
     try{
         const vaca = await vacaRegistro.findById(req.params.id);
-        console.log(vaca);
+        
         vaca.registroVacunas.push({
             name : req.body.name,
             description: req.body.description,
@@ -135,7 +135,7 @@ router.post('/addVacuna/:id', async function addVacuna (req,res){
 router.get('/getVacunas/:id', async function getVacunas (req,res){
     try{
         const total = await vacaRegistro.findById(req.params.id);
-        console.log(total);
+    
         const ans = total.registroVacunas;
         res.status(200).json(ans);
     }

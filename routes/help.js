@@ -29,7 +29,7 @@ router.post('/report', (req, res) =>{
         if (error) {
             res.json({success: false, info: error});
         } else {
-            console.log('Email sent: ' + info.response);
+            
             res.json({success: true, status: 'Successful!'});
         }
     });   
