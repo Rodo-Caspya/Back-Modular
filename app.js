@@ -9,13 +9,13 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 
-const corsOptions = {
-    origin: [
-        'http://localhost:8080',
-        'https://pruebasmodularscgb.netlify.app'
-    ],
-    optionsSuccessStatus: 200
-}
+// const corsOptions = {
+//     origin: [
+//         'http://localhost:8080/',
+
+//     ],
+//     optionsSuccessStatus: 200
+// }
 //config file
 var config = require('./config');
 
@@ -35,7 +35,7 @@ var app = express();
 
 //Module utilization
 // app.use(cors(corsOptions));
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
